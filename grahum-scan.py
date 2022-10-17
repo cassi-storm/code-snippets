@@ -25,8 +25,11 @@ n = int(input())
 a = [0] * n
 for i in range(n):
     a[i] = tuple(map(int, input().split()))
-for i in grahum(a):
-    print(i)
+cds = grahum(a)
+print(len(cds) + 1)
+for i in cds:
+    print(*i)
+print(*cds[0])
 
 
 	
