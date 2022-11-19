@@ -101,3 +101,20 @@ Output:
 60 20
 
 '''
+
+# alternative
+
+class Solution:
+    def outerTrees(self, trees: List[List[int]]) -> List[List[int]]:
+        def f(p1, p2, p3):
+            (x1, y1), (x2, y2), (x3, y3) = p1, p2, p3
+            return (y3 - y2) * (x2 - x1) - (y2 - y1) * (x3 - x2) 
+        upper, lower  = [], []
+        for point in sorted(trees):
+            while len(lower) >= 2 and f(lower[-2], lower[-1], point) < 0: lower.pop()
+            while len(upper) >= 2 and f(upper[-2], upper[-1], point) > 0: upper.pop()
+            lower.append(tuple(point))
+            upper.append(tuple(point))   
+        return list(set(lower + upper))
+
+
